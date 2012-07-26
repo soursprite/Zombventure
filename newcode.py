@@ -88,14 +88,15 @@ class TheDarkApartment(Game):
                        "has crashed into the corner of the building to your left. Both the "+
                        "driver's and passenger door are open and no one looks to be inside."
                        )
-        self.anyKey()
-        self.textPrint("Jugding by the mix of small store fronts and apartments across the "+
-                       "the street, you know you are in the city. Hmm... In fact, you feel "+
+        print "\n"               
+        self.textPrint("Jugding by the mix of small storefronts and apartments across the "+
+                       "street, you know you are in the city. Hmm... In fact, you feel "+
                        "like you've been to this neighborhood before. Often. As if it wer-")
-        print "\n"
+        self.anyKey()
         self.textPrint("Pain takes you. As you try to remember, all you get is throbbing pain. "+
-                       "It looks like deep thinking is not going to be an asset to you any time "+
-                       "soon. There are a couple other cars parked along the street, and beyond "+
+                       "It looks like deep thought is not going to be an asset to you any time "+
+                       "soon. You shake your head and look more further down the street. "+
+                       "There are a couple other cars parked along the street, and beyond "+
                        "this one crashed car, everything else appears to be orderly.")
         print "\n"
         self.textPrint("And then it "+
