@@ -55,10 +55,9 @@ class Game(object):
     def anyKey(self):
         raw_input("\nPress Enter to Continue...\n")
     
-    def textPrint(self, text):
+    def textPrint(self, text, newline = 0):
         #prints out a block of text and caps it to X number of chars per line.
 		#Words that go past the char limit start at the next line
-        #print "\n"
         chars = list(text)
         for char in chars:
             line = []
@@ -67,9 +66,12 @@ class Game(object):
                 if line[len(line)-1] == " " and len(line) >= 60:
                     break
             print "".join(line)
+        while newline > 0:
+            print "\n"
+            newline -= 1
 
             
-class TheDarkApartment(Game):
+class DizzyStreet(Game):
     
     def theStreet(self):
         self.doom = 1
@@ -118,20 +120,46 @@ class TheDarkApartment(Game):
         if choice == '1':
             return 'theFirst'
         elif choice == '2':
-            self.player.fatinc(-10)
+            self.player.fatinc(-5)
             return 'theStreet2'
         elif choice == '3':
             print choice
             return 'theCrashedCar'
         else:
-            self.textPrint("Something")
+            self.textPrint("You take a few aimless steps out into the street, and feel weak you "+
+                           "are. You wobble back against the wall.")
             return 'theStreet2'
             
         self.textPrint(self.player.death())
         exit()
 
     def theFirst(self):
-        print "I saws him"
+        self.doom += 1
+        self.textPrint("You walk towards the other corner of the apartment building, past the "+
+                       "door. Or at least you try. Your balance is definitely off, and there "+
+                       "is a humming dizziness that makes it difficult to walk upright. With one "+
+                       "hand on the wall as a guide, you make your way down the sidewalk.",1)
+
+        self.textPrint("Just before you make it around the corner, you hear the sounds of glass "+
+                       "crunching and feet shuffling. You turn the corner slowly to face another "+
+                       "narrow alley, one with a chain link fence blocking off the other end, "+
+                       "perhaps 50 to 60 feet down from you are. And next to the fence, you see"+
+                       "a short man facing away from you, standing next to some trash, with pieces of "
+                       "glass scattered around him. What now?",1)
+        self.funny = True
+        self.textPrint("1. Call out to him. It's time to get answers.")
+        self.textPrint("2. Head over to him.")
+        self.textPrint("3. Keep going down the sidewalk. This guy gives you weird vibes.")
+        if self.funny:
+            self.textPrint("4. Start shuffling. Everyday I'm shuffling.")
+        choice = raw_input("> ")
+        if choice == '1':
+            self.textPrint("Option one")
+        if choice == '2':
+            self.textPrint("Option two")
+        if choice == '3':
+            self.textPrint("Wait what?")
+            self.funny = false
         exit()
         
 
@@ -143,10 +171,11 @@ class TheDarkApartment(Game):
      
     def theStreet2(self):
         print "Still here."
+        
         exit()
         
         
-new_game = TheDarkApartment('theStreet')
+new_game = DizzyStreet('theStreet')
 new_game.play()
 
 
