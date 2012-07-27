@@ -14,6 +14,7 @@ class Player(object):
     def fatinc(self, value):
         #increments fatigue by the value so I dont have to explicitly say "fat += x"
         self.fatigue += value
+        print self.fatigue
         
 	
     def death(self):
@@ -52,7 +53,7 @@ class Game(object):
             next_scene = scene()
     
     def anyKey(self):
-        raw_input("\nPress Enter\n")
+        raw_input("\nPress Enter to Continue...\n")
     
     def textPrint(self, text):
         #prints out a block of text and caps it to X number of chars per line.
@@ -71,9 +72,9 @@ class Game(object):
 class TheDarkApartment(Game):
     
     def theStreet(self):
-        self.doom = 3
-        self.player.fatinc(25)
-        print self.player.fatigue
+        self.doom = 1
+        self.player.fatinc(40)
+        
         self.textPrint("You wake to the sound of a distant shriek and a throbbing headache "+ 
                        "that starts from the base of your skull to the bridge of your nose. "+
                        "Your ears feels muffled, yet you can definitely hear them ringing. "+
@@ -86,7 +87,7 @@ class TheDarkApartment(Game):
                        "old apartment building. To your left, there is a narrow alley between "+
                        "the apartment building and the next building over. The car you saw earlier "+
                        "has crashed into the corner of the building to your left. Both the "+
-                       "driver's and passenger door are open and no one looks to be inside."
+                       "driver and passenger doors are open and no one looks to be inside."
                        )
         print "\n"               
         self.textPrint("Jugding by the mix of small storefronts and apartments across the "+
@@ -95,21 +96,56 @@ class TheDarkApartment(Game):
         self.anyKey()
         self.textPrint("Pain takes you. As you try to remember, all you get is throbbing pain. "+
                        "It looks like deep thought is not going to be an asset to you any time "+
-                       "soon. You shake your head and look more further down the street. "+
-                       "There are a couple other cars parked along the street, and beyond "+
-                       "this one crashed car, everything else appears to be orderly.")
+                       "soon. You shake your head and look further down the street. "+
+                       "There are a couple other cars parked along the curb, and beyond "+
+                       "this one crashed car, everything else seems to be orderly.")
         print "\n"
-        self.textPrint("And then it "+
-                       "hits. There is no one outside. In fact, there are no cars driving by, and "+
-                       "you can not see customers in any of the store windows. A feeling of dread "+
+        self.textPrint("But then it finally hits you. "+
+                       "There is no one outside. With the Sun high in the sky, it couldn't be past "+
+                       "mid-afternoon. It's impossible for the streets to be this empty. "+
+                       "In fact, there aren't even any cars driving by, and "+
+                       "you do not see a single customer in any of the store windows. Something "+
+                       "is definitely wrong. A feeling of dread "+
                        "begins to bubble up.")
         print "\n"
-        self.textPrint("")
-        
+        self.textPrint("As you try to work out the situation, you hear the sound of glass shattering "+
+                       "nearby. You think you also hear someone groan, but you aren't sure. What now?")
+        print "\n"               
+        self.textPrint("1. Investigate the sounds. Maybe it's someone with answers.")
+        self.textPrint("2. Stay and wait. My legs are still shaky.")
+        self.textPrint("3. Check the car. There's bound to be some clue to the situation.")
         choice = raw_input("> ")
+        if choice == '1':
+            return 'theFirst'
+        elif choice == '2':
+            self.player.fatinc(-10)
+            return 'theStreet2'
+        elif choice == '3':
+            print choice
+            return 'theCrashedCar'
+        else:
+            self.textPrint("Something")
+            return 'theStreet2'
+            
         self.textPrint(self.player.death())
         exit()
- 
+
+    def theFirst(self):
+        print "I saws him"
+        exit()
+        
+
+    def theCrashedCar(self):
+        print "boobs wat"
+        exit()
+        self.textPrint(self.player.death())
+        
+     
+    def theStreet2(self):
+        print "Still here."
+        exit()
+        
+        
 new_game = TheDarkApartment('theStreet')
 new_game.play()
 
