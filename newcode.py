@@ -69,6 +69,10 @@ class Game(object):
         while newline > 0:
             print "\n"
             newline -= 1
+            
+    def dotLine(self):
+        #prints out a dotted line for separating, you know... stuff.
+        print "-"*40
 
             
 class DizzyStreet(Game):
@@ -146,23 +150,46 @@ class DizzyStreet(Game):
                        "perhaps 50 to 60 feet down from you are. And next to the fence, you see"+
                        "a short man facing away from you, standing next to some trash, with pieces of "
                        "glass scattered around him. What now?",1)
+                       
+        #gag action in theFirst_choice
         self.funny = True
-        self.textPrint("1. Call out to him. It's time to get answers.")
-        self.textPrint("2. Head over to him.")
-        self.textPrint("3. Keep going down the sidewalk. This guy gives you weird vibes.")
-        if self.funny:
-            self.textPrint("4. Start shuffling. Everyday I'm shuffling.")
-        choice = raw_input("> ")
-        if choice == '1':
-            self.textPrint("Option one")
-        if choice == '2':
-            self.textPrint("Option two")
-        if choice == '3':
-            self.textPrint("Wait what?")
-            self.funny = false
-        exit()
         
-
+        def theFirst_choice():
+            self.textPrint("1. Call out to him. It's time to get answers.")
+            self.textPrint("2. Head over to him.")
+            self.textPrint("3. Keep going down the sidewalk. This guy gives you weird vibes.")
+            if self.funny:
+                self.textPrint("4. Start shuffling. Everyday I'm shuffling.")
+            choice = raw_input("> ")
+            if choice == '1':
+                self.textPrint("Option one")
+            if choice == '2':
+                self.textPrint("Option two")
+            if choice == '3':
+                self.dotLine()
+                self.doom += 1
+                self.textPrint("You take a couple of steps past the corner of the apartment building, "+
+                               "when your knees start to wobble without support from the wall. On "+
+                               "your next step, your legs buckle and you drop to your knees. You manage "+
+                               "to get a hand out and catch yourself before you faceplant.")
+                self.anyKey()
+                self.textPrint("\"eehooooaaggghhhhh...\"",1)
+                self.textPrint("From the ground, you turn your head slowly and meet a pair of eyes in "+
+                               "the alley. The man is turned and facing you, with his head tilted back "+
+                               "and his mouth hanging open. He doesn't seem to be looking at you, but rather, "+
+                               "inside you. There is some dried blood on his face, and along his wrist, "+
+                               "trailing down his thumb and index finger. He takes a slow, but determined "+
+                               "step towards you. You have a bad feeling, you...")
+                choice = raw_input("> ")
+                self.textPrint("1. Call out a greeting. You could use a hand.")
+                self.textPrint("2. Get up. Get out of here.
+            if choice == '4':
+                self.textPrint("Wait what?",1)
+                self.funny = False
+                theFirst_choice()
+            exit()
+        theFirst_choice()
+        
     def theCrashedCar(self):
         print "boobs wat"
         exit()
